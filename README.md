@@ -1,4 +1,4 @@
-I’m Ben Sehl. A mid-thirties guy living and working in Toronto with my wife, Mackenzie; baby boy Emmett; and dog, Dash. 
+I’m Ben Sehl. A mid-thirties guy living and working in Toronto with my wife, Mackenzie; son, Emmett; and dog, Dash. 
 
 An advocate of lifelong learning, I studied semiotics and fine arts in school, then learned from the team at Bruce Mau Design about graphic design, brand architecture, systems thinking, and how to make a polished presentation. I’ve since taken crash courses in data science and web development. Mostly though, I learn on my own by reading and tinkering. 
 

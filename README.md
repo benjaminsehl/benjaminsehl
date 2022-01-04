@@ -1,6 +1,6 @@
 I’m Ben Sehl. A mid-thirties guy living and working in Toronto with my wife, Mackenzie; baby boy Emmett; and dog, Dash. 
 
-An advocate of lifelong learning, I studied semiotics and fine arts in school, then learned from the team at Bruce Mau Design about graphic design, brand architecture, systems thinking, and how to make a polished presentation. I’ve since taken crash courses in data science and web development, but mostly I learn on my own by reading and tinkering. 
+An advocate of lifelong learning, I studied semiotics and fine arts in school, then learned from the team at Bruce Mau Design about graphic design, brand architecture, systems thinking, and how to make a polished presentation. I’ve since taken crash courses in data science and web development. Mostly though, I learn on my own by reading and tinkering. 
 
 Through my career, I’ve been a designer (of graphics, experiences, products & services), a web developer, software developer (just hacks mostly), a growth marketer, a brand strategist and an analytics engineer, as well as a team leader and founder*. Through school, I worked in manufacturing, customer support, and retail sales (not to mention landscaping, DJing, security monitoring, and ski coaching.)
 

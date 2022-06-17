@@ -8,4 +8,4 @@ Now I make a living by using my experience and perspective, centred around comme
 
 Most people outside of friends and family know me for co-founding [Kotn](https://github.com/kotn)—an apparel and home goods company, which I was spending all of my time on from 2014 through 2021. Now I lead product for [Hydrogen](https://github.com/shopify/hydrogen) at [Shopify](https://shopify.com). Recently I’ve begun working on side-projects under the alias [Incremental Studio](https://github.com/incremental-studio). I also help a few consumer brands that I really believe in, by advising on ecommerce, analytics, and strategy—and by connecting them with great people. 
 
-_*Mileage across competencies may vary._
+*Mileage across competencies may vary.

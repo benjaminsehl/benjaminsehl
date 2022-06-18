@@ -1,3 +1,26 @@
+@font-face {
+  font-family: "Blanco";
+  src: url("/fonts/Blanco-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Blanco";
+  src: url("/fonts/Blanco-Italic.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-stone-900 bg-stone-50 dark:bg-stone-900 dark:text-stone-50 antialiased;
+  }
+
+}

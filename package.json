@@ -13,7 +13,6 @@
     "@babel/preset-react": "^7.17.12",
     "@shopify/cli": "3.0.16",
     "@shopify/cli-hydrogen": "^3.0.16",
-    "@tailwindcss/typography": "^0.5.2",
     "postcss": "^8.4.14",
     "postcss-import": "^14.1.0",
     "postcss-preset-env": "^7.7.1",
@@ -24,8 +23,10 @@
   },
   "dependencies": {
     "@shopify/hydrogen": "^0.25.0",
+    "marked": "^4.0.17",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "unified": "^10.1.2"
   },
   "author": "benjaminsehl"
 }

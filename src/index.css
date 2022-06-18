@@ -14,13 +14,31 @@
   font-display: swap;
 }
 
+:root {
+  --color-black: #151513;
+  --color-darkGray: #403d3a;
+  --color-gray: #817b74;
+  --color-lightGray: #aca49a;
+  --color-offWhite: #f7f5f3;
+  --color-white: #fefefe;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply text-stone-900 bg-stone-50 dark:bg-stone-900 dark:text-stone-50 antialiased;
+    @apply text-darkGray dark:text-offWhite bg-offWhite dark:bg-black antialiased;
   }
 
+  .markdown {
+    @apply grid gap-4;
+    p {
+      @apply text-xl;
+    }
+    a {
+      @apply border-b dark:border-gray italic;
+    }
+  }
 }

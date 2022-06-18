@@ -1,8 +1,7 @@
-import { fetchSync, gql } from "@shopify/hydrogen";
-import { marked } from "marked";
+import { fetchSync, gql, Link } from "@shopify/hydrogen";
 import Layout from "../components/Layout.server";
 
-export default function Home() {
+export default function NotFound() {
   const GITHUB_TOKEN = Oxygen.env.GITHUB_TOKEN;
 
   const { data } = fetchSync("https://api.github.com/graphql", {
@@ -17,16 +16,16 @@ export default function Home() {
     },
   }).json();
 
-  const { user, seo, content } = data;
+  const { user, seo } = data;
 
   return (
     <Layout user={user} seo={seo}>
-      <section
-        className="font-serif markdown md:text-xl text-darkGray dark:text-offWhite"
-        dangerouslySetInnerHTML={{
-          __html: marked.parse(content.readme.text),
-        }}
-      />
+      <section className="font-serif markdown md:text-xl text-darkGray dark:text-offWhite">
+        <p>
+          Sorry, can’t find that. Simple site — 
+          <Link to="/">just click here.</Link>
+        </p>
+      </section>
     </Layout>
   );
 }
@@ -46,13 +45,6 @@ const PROFILE_QUERY = gql`
       ogImage: openGraphImageUrl
       description
       web: homepageUrl
-    }
-    content: repository(name: $username, owner: $username) {
-      readme: object(expression: "main:README.md") {
-        ... on Blob {
-          text
-        }
-      }
     }
   }
 `;

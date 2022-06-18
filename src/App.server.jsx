@@ -1,25 +1,31 @@
 import renderHydrogen from "@shopify/hydrogen/entry-server";
 import {
   FileRoutes,
+  LocalizationProvider,
   Route,
   Router,
   ShopifyAnalytics,
   ShopifyProvider,
   PerformanceMetrics,
+  PerformanceMetricsDebug,
 } from "@shopify/hydrogen";
 import { Suspense } from "react";
-import NotFound from "./components/404.client";
+import NotFound from "./routes/404.server";
 
-function App() {
+function App({ request }) {
+  const countryCode = request.headers.get("oxygen-buyer-country") || "CA";
   return (
     <Suspense fallback={null}>
       <ShopifyProvider>
-        <Router>
-          <FileRoutes />
-          <Route path="*" page={<NotFound />} />
-        </Router>
-        <PerformanceMetrics />
-        <ShopifyAnalytics />
+        <LocalizationProvider countryCode={countryCode}>
+          <Router>
+            <FileRoutes />
+            <Route path="*" page={<NotFound />} />
+          </Router>
+          <PerformanceMetrics />
+          {import.meta.env.DEV && <PerformanceMetricsDebug />}
+          <ShopifyAnalytics />
+        </LocalizationProvider>
       </ShopifyProvider>
     </Suspense>
   );

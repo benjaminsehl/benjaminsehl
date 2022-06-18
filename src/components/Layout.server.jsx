@@ -30,9 +30,9 @@ export default function Layout({ user, seo, children }) {
         <div className="flex-grow">{children}</div>
 
         <footer className="grid justify-start gap-4 text-sm text-gray">
-          <h3 className="font-medium text-darkGrey dark:text-offWhite">
+          <h2 className="font-medium text-darkGrey dark:text-offWhite">
             Contact:
-          </h3>
+          </h2>
           <dl className="grid grid-flow-row grid-cols-2 gap-2">
             <dt>Twitter:</dt>
             <dd>

@@ -1,7 +1,7 @@
 {
   "name": "benjaminsehl",
   "description": "The personal website of Benjamin Sehl.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {

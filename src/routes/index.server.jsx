@@ -1,7 +1,6 @@
 import { fetchSync, gql } from "@shopify/hydrogen";
 import { marked } from "marked";
 import Layout from "../components/Layout.server";
-
 export default function Home() {
   const GITHUB_TOKEN = Oxygen.env.GITHUB_TOKEN;
 

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Blanco";
-  src: url("/fonts/Blanco-Regular.woff2") format("woff2");
+  src: url("/src/assets/fonts/Blanco-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Blanco";
-  src: url("/fonts/Blanco-Italic.woff2") format("woff2");
+  src: url("/src/assets/fonts/Blanco-Italic.woff2") format("woff2");
   font-weight: normal;
   font-style: italic;
   font-display: swap;

@@ -52,7 +52,6 @@ export default function Home() {
           __html: marked.parse(content.readme.text),
         }}
       />
-      <div>{JSON.stringify(data)}</div>
     </Layout>
   );
 }

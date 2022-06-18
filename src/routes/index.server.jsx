@@ -1,15 +1,29 @@
 import {
-  useQuery,
   CacheLong,
   gql,
-  useServerAnalytics,
   ShopifyAnalyticsConstants,
+  useQuery,
+  useServerAnalytics,
+  useShopQuery,
 } from "@shopify/hydrogen";
 import { marked } from "marked";
 import Layout from "../components/Layout.server";
 export default function Home() {
   const GITHUB_USERNAME = "benjaminsehl";
   const GITHUB_TOKEN = Oxygen.env.GITHUB_TOKEN;
+
+  const {
+    data: {
+      shop: {
+        id,
+        paymentSettings: { currencyCode },
+      },
+    },
+  } = useShopQuery({
+    query: SHOP_QUERY,
+    cache: CacheLong(),
+    preload: "*",
+  });
 
   const { data } = useQuery(["github", GITHUB_USERNAME], async () => {
     const response = await fetch("https://api.github.com/graphql", {
@@ -23,8 +37,17 @@ export default function Home() {
         Authorization: `bearer ${GITHUB_TOKEN}`,
       },
       cache: CacheLong(),
+      preload: "*",
     });
     return await response.json();
+  });
+
+  useServerAnalytics({
+    shopify: {
+      shopId: id,
+      currency: currencyCode,
+      pageType: ShopifyAnalyticsConstants.pageType.home,
+    },
   });
 
   const staleData = {
@@ -53,14 +76,6 @@ export default function Home() {
   };
 
   const { user, seo, content } = data || staleData;
-
-  useServerAnalytics({
-    shopify: {
-      shopId: "gid://shopify/Shop/59315781688",
-      currency: "CAD",
-      pageType: ShopifyAnalyticsConstants.pageType.home,
-    },
-  });
 
   return (
     <Layout user={user} seo={seo}>
@@ -95,6 +110,17 @@ const PROFILE_QUERY = gql`
         ... on Blob {
           text
         }
+      }
+    }
+  }
+`;
+
+const SHOP_QUERY = gql`
+  query shopInfo {
+    shop {
+      id
+      paymentSettings {
+        currencyCode
       }
     }
   }

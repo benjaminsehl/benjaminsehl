@@ -2,8 +2,7 @@ import { fetchSync, CacheLong, gql } from "@shopify/hydrogen";
 import { marked } from "marked";
 import Layout from "../components/Layout.server";
 export default function Home() {
-  const GITHUB_TOKEN = "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";
-  // Oxygen.env.GITHUB_TOKEN;
+  const GITHUB_TOKEN = Oxygen.env.GITHUB_TOKEN;
 
   const { data } = fetchSync("https://api.github.com/graphql", {
     method: "POST",
@@ -15,6 +14,7 @@ export default function Home() {
       "content-type": "application/json",
       Authorization: `bearer ${GITHUB_TOKEN}`,
     },
+    cache: CacheLong(),
   }).json();
 
   const { user, seo, content } = data;

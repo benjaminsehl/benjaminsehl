@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "shopify hydrogen dev",
-    "build": "shopify hydrogen build && cp README.md src/contents/index.md",
+    "build": "shopify hydrogen build",
     "preview": "shopify hydrogen preview"
   },
   "devDependencies": {

@@ -1,23 +1,27 @@
-import { fetchSync, CacheLong, gql } from "@shopify/hydrogen";
+import { useQuery, CacheLong, gql } from "@shopify/hydrogen";
 import { marked } from "marked";
 import Layout from "../components/Layout.server";
 export default function Home() {
+  const GITHUB_USERNAME = "benjaminsehl";
   const GITHUB_TOKEN = Oxygen.env.GITHUB_TOKEN;
 
-  const { data } = fetchSync("https://api.github.com/graphql", {
-    method: "POST",
-    body: JSON.stringify({
-      query: PROFILE_QUERY,
-      variables: { username: "benjaminsehl" },
-    }),
-    headers: {
-      "content-type": "application/json",
-      Authorization: `bearer ${GITHUB_TOKEN}`,
-    },
-    cache: CacheLong(),
-  }).json();
+  const { data } = useQuery(["github", GITHUB_USERNAME], async () => {
+    const response = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      body: JSON.stringify({
+        query: PROFILE_QUERY,
+        variables: { username: GITHUB_USERNAME },
+      }),
+      headers: {
+        "content-type": "application/json",
+        Authorization: `bearer ${GITHUB_TOKEN}`,
+      },
+      cache: CacheLong(),
+    });
+    return await response.json();
+  });
 
-  const placeholder = {
+  const staleData = {
     user: {
       avatarUrl:
         "https://avatars.githubusercontent.com/u/1060770?u=5c7dd87e798317d89a5bc5ece63ceb54325d8d23&v=4",
@@ -42,7 +46,7 @@ export default function Home() {
     },
   };
 
-  const { user, seo, content } = data ? data : placeholder;
+  const { user, seo, content } = data || staleData;
 
   return (
     <Layout user={user} seo={seo}>

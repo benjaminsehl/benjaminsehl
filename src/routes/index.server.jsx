@@ -1,4 +1,10 @@
-import { useQuery, CacheLong, gql } from "@shopify/hydrogen";
+import {
+  useQuery,
+  CacheLong,
+  gql,
+  useServerAnalytics,
+  ShopifyAnalyticsConstants,
+} from "@shopify/hydrogen";
 import { marked } from "marked";
 import Layout from "../components/Layout.server";
 export default function Home() {
@@ -47,6 +53,14 @@ export default function Home() {
   };
 
   const { user, seo, content } = data || staleData;
+
+  useServerAnalytics({
+    shopify: {
+      shopId: "gid://shopify/Shop/59315781688",
+      currency: "CAD",
+      pageType: ShopifyAnalyticsConstants.pageType.home,
+    },
+  });
 
   return (
     <Layout user={user} seo={seo}>

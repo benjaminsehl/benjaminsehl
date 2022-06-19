@@ -10,7 +10,7 @@ export default function Layout({ user, seo, children }) {
         <meta name="description" content={seo.description} />
         <meta property="og:image" content={seo.ogImage} />
         <link rel="canonical" href={seo.web} />
-        <meta name="twitter:card" content="summary_lage_image" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={user.twitter} />
         <meta name="twitter:creator" content={user.twitter} />
       </Head>

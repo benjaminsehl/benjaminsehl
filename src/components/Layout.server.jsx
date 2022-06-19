@@ -10,6 +10,9 @@ export default function Layout({ user, seo, children }) {
         <meta name="description" content={seo.description} />
         <meta property="og:image" content={seo.ogImage} />
         <link rel="canonical" href={seo.web} />
+        <meta name="twitter:card" content="summary_lage_image" />
+        <meta name="twitter:site" content={user.twitter} />
+        <meta name="twitter:creator" content={user.twitter} />
       </Head>
       <main className="flex flex-col max-w-3xl min-h-screen gap-8 px-4 py-8 mx-auto sm:py-12 sm:px-8 sm:gap-12 md:gap-16 lg:gap-20 md:px-12 md:py-16 lg:py-20">
         <header className="flex items-center justify-between gap-8">

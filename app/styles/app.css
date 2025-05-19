@@ -1,14 +1,16 @@
+@import 'tailwindcss';
+
 @font-face {
-  font-family: "Blanco";
-  src: url("/src/assets/fonts/Blanco-Regular.woff2") format("woff2");
+  font-family: 'Blanco';
+  src: url('/fonts/Blanco-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Blanco";
-  src: url("/src/assets/fonts/Blanco-Italic.woff2") format("woff2");
+  font-family: 'Blanco';
+  src: url('/fonts/Blanco-Italic.woff2') format('woff2');
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -23,9 +25,15 @@
   --color-white: #fefefe;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --color-black: var(--color-black);
+  --color-darkGray: var(--color-darkGray);
+  --color-gray: var(--color-gray);
+  --color-lightGray: var(--color-lightGray);
+  --color-offWhite: var(--color-offWhite);
+  --color-white: var(--color-white);
+  --font-serif: 'Blanco', 'ui-serif';
+}
 
 @layer base {
   body {

@@ -108,7 +108,7 @@ export async function loader({context}: LoaderFunctionArgs) {
       ogImage:
         'https://repository-images.githubusercontent.com/444474533/c3a34d3e-8ee8-4af9-9ef4-dad5d0e0ad53',
       description:
-        'Ben lives in Toronto with his wife, son, and dog. Practices product strategy, design, and development. Likes to learn, exercise, and make stuff.',
+        'Ben is the Product Director of Online Store at Shopify, and cofounder of Kotn and Margin.',
       web: 'https://sehl.ca',
     },
     content: {

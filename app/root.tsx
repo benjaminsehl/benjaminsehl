@@ -69,31 +69,22 @@ I've worked in various roles, including design, development, marketing, and stra
     },
   };
 
-  return data(
-    {
-      profile,
-      publicStoreDomain: env.PUBLIC_STORE_DOMAIN,
-      shop: getShopAnalytics({
-        storefront,
-        publicStorefrontId: env.PUBLIC_STOREFRONT_ID,
-      }),
-      consent: {
-        checkoutDomain: env.PUBLIC_CHECKOUT_DOMAIN,
-        storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
-        withPrivacyBanner: false,
-        // localize the privacy banner
-        country: storefront.i18n.country,
-        language: storefront.i18n.language,
-      },
+  return data({
+    profile,
+    publicStoreDomain: env.PUBLIC_STORE_DOMAIN,
+    shop: getShopAnalytics({
+      storefront,
+      publicStorefrontId: env.PUBLIC_STOREFRONT_ID,
+    }),
+    consent: {
+      checkoutDomain: env.PUBLIC_CHECKOUT_DOMAIN,
+      storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
+      withPrivacyBanner: false,
+      // localize the privacy banner
+      country: storefront.i18n.country,
+      language: storefront.i18n.language,
     },
-    {
-      headers: {
-        'Oxygen-Cache-Control':
-          'public, max-age=31536000, stale-while-revalidate=600',
-        Vary: 'Accept-Encoding, Accept-Language',
-      },
-    },
-  );
+  });
 }
 
 export function Layout({children}: {children?: React.ReactNode}) {

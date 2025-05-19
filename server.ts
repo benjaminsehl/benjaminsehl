@@ -55,32 +55,24 @@ export default {
         });
       }
 
-      // Make sure we're not modifying the original response headers object
-      const headers = new Headers(response.headers);
-
-      // Ensure response is eligible for Oxygen full-page caching
-      // based on the headers set in loaders
-      const oxygenCacheControl = headers.get('Oxygen-Cache-Control');
-      const varyHeader = headers.get('Vary');
-
-      // Verify the response is a GET request with appropriate status
+      // Set caching headers for all successful GET requests
       if (
         request.method === 'GET' &&
-        (response.status >= 200 && response.status < 400) &&
-        oxygenCacheControl &&
-        oxygenCacheControl.includes('public') &&
-        varyHeader
+        response.status >= 200 &&
+        response.status < 400
       ) {
-        // Headers are already set correctly in the response
-        return response;
-      } else if (headers.get('Oxygen-Full-Page-Cache') === 'uncacheable') {
-        console.log('Response is marked as uncacheable. Checking why:');
-        if (request.method !== 'GET') console.log('- Not a GET request');
-        if (!(response.status >= 200 && response.status < 400)) console.log('- Status code not 2XX or 3XX');
-        if (!oxygenCacheControl) console.log('- Missing Oxygen-Cache-Control header');
-        if (oxygenCacheControl && !oxygenCacheControl.includes('public')) console.log('- Oxygen-Cache-Control missing public directive');
-        if (!varyHeader) console.log('- Missing Vary header');
-        if (headers.has('Set-Cookie')) console.log('- Has Set-Cookie header');
+        const headers = new Headers(response.headers);
+        headers.set('Oxygen-Cache-Control', 'public, max-age=31536000, stale-while-revalidate=300');
+
+        if (!headers.has('Vary')) {
+          headers.set('Vary', 'Accept-Encoding, Accept-Language');
+        }
+
+        return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers
+        });
       }
 
       return response;

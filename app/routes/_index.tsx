@@ -1,22 +1,93 @@
 import {type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {useLoaderData, type MetaFunction} from '@remix-run/react';
-import { marked } from "marked";
+import {marked} from 'marked';
 
-export const meta: MetaFunction<typeof loader> = ({data}) => {
+export const meta: MetaFunction<typeof loader> = ({data, error}) => {
+  if (error) {
+    return [
+      {title: 'Error | Benjamin Sehl'},
+      {name: 'description', content: 'There was an error loading the page.'},
+    ];
+  }
+
+  if (!data) {
+    return [
+      {title: 'Benjamin Sehl'},
+      {name: 'description', content: 'Personal website of Benjamin Sehl'},
+    ];
+  }
+
   return [
+    // Basic metadata
+    {title: `${data.user.name} · ${data.user.bio}`},
+    {name: 'description', content: data.seo.description},
+
+    // Canonical URL
+    {tagName: 'link', rel: 'canonical', href: data.seo.web},
+
+    // Open Graph metadata
+    {property: 'og:url', content: data.seo.web},
+    {property: 'og:type', content: 'website'},
+    {property: 'og:title', content: `${data.user.name} · ${data.user.bio}`},
+    {property: 'og:description', content: data.seo.description},
+    {property: 'og:image', content: data.seo.ogImage},
+
+    // Twitter metadata
+    {name: 'twitter:card', content: 'summary_large_image'},
+    {name: 'twitter:title', content: `${data.user.name} · ${data.user.bio}`},
+    {name: 'twitter:description', content: data.seo.description},
+    {name: 'twitter:image', content: data.seo.ogImage},
+    {name: 'twitter:creator', content: `@${data.user.handle}`},
+
+    // JSON-LD Person schema
     {
-      title: `${data?.user.name} · ${data?.user.bio}`,
-      description: data?.seo.description,
-      'og:url': data?.seo.web,
-      'og:type': 'website',
-      'og:title': `${data?.user.name} · ${data?.user.bio}`,
-      'og:description': data?.seo.description,
-      'og:image': data?.seo.ogImage,
-      'twitter:card': 'summary_large_image',
-      'twitter:title': `${data?.user.name} · ${data?.user.bio}`,
-      'twitter:description': data?.seo.description,
-      'twitter:image': data?.seo.ogImage,
-      'twitter:creator': `@${data?.user.twitter}`,
+      'script:ld+json': {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: data.user.name,
+        description: data.user.bio,
+        image: data.user.avatarUrl,
+        email: data.user.email,
+        jobTitle: 'Product Director',
+        affiliation: {
+          '@type': 'Organization',
+          name: 'Kotn',
+        },
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Shopify',
+        },
+        award: 'Forbes 30 Under 30: Retail and Ecommerce',
+        sameAs: [
+          `https://x.com/${data.user.handle}`,
+          `https://instagram.com/${data.user.handle}`,
+          `https://github.com/${data.user.handle}`,
+          `https://linkedin.com/in/${data.user.handle}`,
+          `https://youtube.com/@${data.user.handle}`,
+          `https://threads.net/@${data.user.handle}`,
+        ],
+        url: data.seo.web,
+        height: '183cm',
+        weight: '80kg',
+        gender: 'male',
+        nationality: 'Canadian',
+        hasOccupation: {
+          '@type': 'Occupation',
+          name: 'Product Director',
+          responsibilities: 'Lead the Online Store product area for Shopify',
+        },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'CA',
+          returnFees: 'Free return shipping',
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Toronto',
+          addressRegion: 'ON',
+          addressCountry: 'Canada',
+        },
+      },
     },
   ];
 };
@@ -31,7 +102,7 @@ export async function loader({context}: LoaderFunctionArgs) {
       location: 'Toronto, Canada',
       name: 'Benjamin Sehl',
       email: 'ben@sehl.ca',
-      twitter: '@benjaminsehl',
+      handle: 'benjaminsehl',
     },
     seo: {
       ogImage:
@@ -42,7 +113,7 @@ export async function loader({context}: LoaderFunctionArgs) {
     },
     content: {
       readme: {
-        text: `I’m Ben Sehl. Product Director for Online Store at Shopify, and cofounder of [Kotn](https://kotn.com) and [Margin](https://margin.global). Previously, I've worked across design, development, marketing, and strategy.
+        text: `I'm Ben Sehl. Product Director for Online Store at Shopify, and cofounder of [Kotn](https://kotn.com) and [Margin](https://margin.global). Previously, I've worked across design, development, marketing, and strategy.
 
 Besides work, I'm a dad of two, which takes up basically all of my free time—though I try to run or strength train daily. I also like working on my home, doing yard work, and other typical dad things.`,
       },

@@ -55,6 +55,34 @@ export default {
         });
       }
 
+      // Make sure we're not modifying the original response headers object
+      const headers = new Headers(response.headers);
+
+      // Ensure response is eligible for Oxygen full-page caching
+      // based on the headers set in loaders
+      const oxygenCacheControl = headers.get('Oxygen-Cache-Control');
+      const varyHeader = headers.get('Vary');
+
+      // Verify the response is a GET request with appropriate status
+      if (
+        request.method === 'GET' &&
+        (response.status >= 200 && response.status < 400) &&
+        oxygenCacheControl &&
+        oxygenCacheControl.includes('public') &&
+        varyHeader
+      ) {
+        // Headers are already set correctly in the response
+        return response;
+      } else if (headers.get('Oxygen-Full-Page-Cache') === 'uncacheable') {
+        console.log('Response is marked as uncacheable. Checking why:');
+        if (request.method !== 'GET') console.log('- Not a GET request');
+        if (!(response.status >= 200 && response.status < 400)) console.log('- Status code not 2XX or 3XX');
+        if (!oxygenCacheControl) console.log('- Missing Oxygen-Cache-Control header');
+        if (oxygenCacheControl && !oxygenCacheControl.includes('public')) console.log('- Oxygen-Cache-Control missing public directive');
+        if (!varyHeader) console.log('- Missing Vary header');
+        if (headers.has('Set-Cookie')) console.log('- Has Set-Cookie header');
+      }
+
       return response;
     } catch (error) {
       console.error(error);

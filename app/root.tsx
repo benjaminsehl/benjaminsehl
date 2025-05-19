@@ -17,25 +17,15 @@ import {PageLayout} from './components/PageLayout';
 
 export type RootLoader = typeof loader;
 
-/**
- * This is important to avoid re-fetching root queries on sub-navigations
- */
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   formMethod,
   currentUrl,
   nextUrl,
 }) => {
-  // revalidate when a mutation is performed e.g add to cart, login...
   if (formMethod && formMethod !== 'GET') return true;
 
-  // revalidate when manually revalidating via useRevalidator
   if (currentUrl.toString() === nextUrl.toString()) return true;
 
-  // Defaulting to no revalidation for root loader data to improve performance.
-  // When using this feature, you risk your UI getting out of sync with your server.
-  // Use with caution. If you are uncomfortable with this optimization, update the
-  // line below to `return defaultShouldRevalidate` instead.
-  // For more details see: https://remix.run/docs/en/main/route/should-revalidate
   return false;
 };
 
@@ -53,8 +43,8 @@ export function links() {
   ];
 }
 
-export async function loader(args: LoaderFunctionArgs) {
-  const {storefront, env} = args.context;
+export async function loader({context}: LoaderFunctionArgs) {
+  const {storefront, env} = context;
 
   const profile: ProfileData = {
     user: {
@@ -96,14 +86,15 @@ I've worked in various roles, including design, development, marketing, and stra
         storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
         withPrivacyBanner: false,
         // localize the privacy banner
-        country: args.context.storefront.i18n.country,
-        language: args.context.storefront.i18n.language,
+        country: storefront.i18n.country,
+        language: storefront.i18n.language,
       },
     },
     {
       headers: {
-        'Oxygen-Cache-Control': 'public, max-age=31536000, stale-while-revalidate=86400',
-        'Vary': 'Accept-Encoding, Accept-Language',
+        'Oxygen-Cache-Control':
+          'public, max-age=31536000, stale-while-revalidate=600',
+        Vary: 'Accept-Encoding, Accept-Language',
       },
     },
   );

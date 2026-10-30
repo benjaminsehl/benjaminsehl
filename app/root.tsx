@@ -57,14 +57,14 @@ export async function loader({context}: LoaderFunctionArgs) {
       ogImage:
         'https://repository-images.githubusercontent.com/444474533/c3a34d3e-8ee8-4af9-9ef4-dad5d0e0ad53',
       description:
-        'Ben lives in Toronto with his wife, son, and dog. Practices product strategy, design, and development. Likes to learn, exercise, and make stuff.',
+        'Ben lives in Toronto with his wife, three kids, and dog. Practices product strategy, design, and development. Likes to learn, exercise, and make stuff.',
       web: 'https://sehl.ca',
     },
     content: {
       readme: {
-        text: `I'm Ben Sehl. Product Director for Online Store at Shopify, dad of two, Torontonian, tinkerer.
+        text: `I'm Ben Sehl. VP Product at Shopify, dad of three, Torontonian, tinkerer.
 
-I've worked in various roles, including design, development, marketing, and strategy. I co-founded a brand called [Kotn](https://kotn.com), working on everything to do with digital and the customer experience. At the beginning of 2022 I joined Shopify and led [Hydrogen & Oxygen](https://hydrogen.shopify.dev/) — taking it from zero to one, scaling to >$1B GMV in under a year, and continuing to more than double growth for 3 years. I now lead Online Store, where I'm working to make it simple for anyone to get what's in their head onto the web. I'm also building [Margin](https://margin.global) with my friend Drew, and sometimes when my kids are napping I'll chip away on [other ideas](https://naptime.work).`,
+I've worked in various roles, including design, development, marketing, and strategy. I co-founded a brand called [Kotn](https://kotn.com), working on everything to do with digital and the customer experience. At the beginning of 2022 I joined Shopify and led [Hydrogen & Oxygen](https://hydrogen.shopify.dev/) — taking it from zero to one, scaling to >$1B GMV in under a year, and continuing to more than double growth for 3 years. I'm now VP Product. I'm also building [Margin](https://margin.global) with my friend Drew, and sometimes when my kids are napping I'll chip away on [other ideas](https://naptime.work).`,
       },
     },
   };

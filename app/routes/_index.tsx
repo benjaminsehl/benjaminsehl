@@ -48,7 +48,7 @@ export const meta: MetaFunction<typeof loader> = ({data, error}) => {
         description: data.user.bio,
         image: data.user.avatarUrl,
         email: data.user.email,
-        jobTitle: 'Product Director',
+        jobTitle: 'VP Product',
         affiliation: {
           '@type': 'Organization',
           name: 'Kotn',
@@ -73,8 +73,8 @@ export const meta: MetaFunction<typeof loader> = ({data, error}) => {
         nationality: 'Canadian',
         hasOccupation: {
           '@type': 'Occupation',
-          name: 'Product Director',
-          responsibilities: 'Lead the Online Store product area for Shopify',
+          name: 'VP Product',
+          responsibilities: 'Lead product at Shopify',
         },
         hasMerchantReturnPolicy: {
           '@type': 'MerchantReturnPolicy',
@@ -108,14 +108,14 @@ export async function loader() {
       ogImage:
         'https://repository-images.githubusercontent.com/444474533/c3a34d3e-8ee8-4af9-9ef4-dad5d0e0ad53',
       description:
-        'Ben is the Product Director of Online Store at Shopify, and cofounder of Kotn and Margin.',
+        'Ben is VP Product at Shopify, and cofounder of Kotn and Margin.',
       web: 'https://sehl.ca',
     },
     content: {
       readme: {
-        text: `I'm Ben Sehl. Product Director for Online Store at Shopify, and cofounder of [Kotn](https://kotn.com) and [Margin](https://margin.global). Previously, I've worked across design, development, marketing, and strategy.
+        text: `I'm Ben Sehl. VP Product at Shopify, and cofounder of [Kotn](https://kotn.com) and [Margin](https://margin.global). Previously, I've worked across design, development, marketing, and strategy.
 
-   Besides work, I'm a dad of two, which takes up basically all of my free time—though I try to run or strength train daily. I also like working on my home, doing yard work, and other typical dad things.`,
+   Besides work, I'm a dad of three, which takes up basically all of my free time—though I try to run or strength train daily. I also like working on my home, doing yard work, and other typical dad things.`,
       },
     },
   });
